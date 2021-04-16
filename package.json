@@ -2,20 +2,36 @@
   "name": "spotify-quick-navigator",
   "version": "0.1.0",
   "private": true,
+  "main": "./electron/main.js",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
+    "base64url": "^3.0.1",
+    "crypto": "^1.0.1",
+    "i": "^0.3.6",
+    "jwt-decode": "^3.1.2",
+    "keytar": "^7.4.0",
+    "node-fetch": "^2.6.1",
+    "npm": "^7.7.0",
     "react": "^17.0.1",
+    "react-bulma-components": "^3.4.0",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "wait-on": "^5.3.0",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
+    "dev": "concurrently \"npm start\" \"dotenv cross-var wait-on http://localhost:%PORT% && electron .\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "ebuild": "npm run build && node_modules/.bin/build"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +50,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.0",
+    "cross-var": "^1.1.0",
+    "dotenv": "^8.2.0",
+    "dotenv-cli": "^4.0.0",
+    "electron": "^12.0.1",
+    "electron-builder": "^22.10.5",
+    "node-sass": "^5.0.0"
   }
 }

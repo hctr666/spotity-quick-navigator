@@ -20,7 +20,7 @@ function Home() {
 
   const refresh = () => fetchCurrentlyPlaying();
 
-  const postPlaybackAction = async (action) => {
+  const doPlaybackAction = async (action) => {
     const actionMap = {
       pause: service.pause,
       resume: service.playOrResume,
@@ -31,17 +31,17 @@ function Home() {
   }
 
   const onPlayNext = () => {
-    postPlaybackAction('next')
+    doPlaybackAction('next')
       .then(refresh);
   };
 
   const onPlayPrevious = () => {
-    postPlaybackAction('previous')
+    doPlaybackAction('previous')
       .then(refresh);
   };
 
   const onPlayOrResume = () => {
-    postPlaybackAction(currentlyPlaying?.isPlaying ? 'pause' : 'resume')
+    doPlaybackAction(currentlyPlaying?.isPlaying ? 'pause' : 'resume')
       .then(refresh);
   };
 

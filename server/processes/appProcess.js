@@ -1,4 +1,7 @@
+const path = require('path');
 const { app, BrowserWindow } = require('electron');
+const ipcMainHandlers = require('../ipcMainHandlers');
+
 const { PORT } = process.env;
 const isDev = !app.isPackaged;
 
@@ -15,11 +18,11 @@ function createAppWindow() {
       contextIsolation: true,
       devTools: isDev,
       enableRemoteModule: false,
-      preload: __dirname + '/preload.js'
+      preload: path.join(__dirname, '../preload/preload.js')
     }
   });
 
-  const startURL = isDev ? `http://localhost:${PORT}` : `file://${path.join(__dirname, '../build/index.html')}`;
+  const startURL = isDev ? `http://localhost:${PORT}` : `file://${path.join(__dirname, '../ui/build/index.html')}`;
 
   mainWindow.loadURL(startURL);
   mainWindow.once('ready-to-show', () => mainWindow.show());
@@ -35,7 +38,8 @@ function closeAppWindow() {
   }
 }
 
-require('./ipcHandlers');
+// Initialize private ipcMain handlers
+ipcMainHandlers.initPrivate();
 
 module.exports = {
   createAppWindow,

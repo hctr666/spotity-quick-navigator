@@ -1,14 +1,13 @@
 const { BrowserWindow } = require('electron');
-const { URLSearchParams } = require('url');
-const authService = require('./authService');
-const { createAppWindow } = require('./appProcess');
+const authService = require('../services/authService');
+const { createAppWindow } = require('../processes/appProcess');
 
-let win = null;
+let authWindow = null;
 
 function createAuthWindow() {
   destroyAuthWin();
 
-  win = new BrowserWindow({
+  authWindow = new BrowserWindow({
     width: 500,
     height: 500,
     webPreferences: {
@@ -17,9 +16,9 @@ function createAuthWindow() {
     }
   });
 
-  win.loadURL(authService.getAuthorizationURL());
+  authWindow.loadURL(authService.getAuthorizationURL());
 
-  const { session: { webRequest } } = win.webContents;
+  const { session: { webRequest } } = authWindow.webContents;
 
   const filter = {
     urls: [
@@ -40,19 +39,19 @@ function createAuthWindow() {
     }
   });
 
-  win.on('authenticated', () => {
+  authWindow.on('authenticated', () => {
     destroyAuthWin();
   });
 
-  win.on('closed', () => {
+  authWindow.on('closed', () => {
     win = null;
   });
 }
 
 function destroyAuthWin() {
-  if (!win) return;
-  win.close();
-  win = null;
+  if (!authWindow) return;
+  authWindow.close();
+  authWindow = null;
 }
 
 function createLogoutWindow() {

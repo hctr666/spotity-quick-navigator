@@ -1,12 +1,13 @@
 require('./initEnv');
-const { app, ipcMain } = require('electron');
-const { createAuthWindow } = require('./authProcess');
-const { createAppWindow, closeAppWindow } = require('./appProcess');
-const authService = require('./authService');
+const { app } = require('electron');
+const { createAuthWindow } = require('./processes/authProcess');
+const { createAppWindow } = require('./processes/appProcess');
+const authService = require('./services/authService');
+const ipcMainHandlers = require('./ipcMainHandlers')
 
 async function showWindow() {
   try {
-    //await authService.refreshTokens();
+    await authService.refreshTokens();
     return createAppWindow();
   } catch (err) {
     createAuthWindow();
@@ -23,8 +24,4 @@ app.on('window-all-closed', () => {
   app.quit();
 });
 
-ipcMain.handle('signOut', async () => {
-  await authService.logout();
-  createAuthWindow();
-  closeAppWindow();
-});
+ipcMainHandlers.initPublic();

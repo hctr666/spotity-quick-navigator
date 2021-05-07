@@ -3,8 +3,8 @@ const os = require('os');
 const { URLSearchParams } = require('url');
 const fetch = require('node-fetch');
 
-const generateCodeChallenge = require('./helpers/generateCodeChallenge');
-const generateRandomString = require('./helpers/generateRandomString');
+const generateCodeChallenge = require('../helpers/generateCodeChallenge');
+const generateRandomString = require('../helpers/generateRandomString');
 
 const { CLIENT_ID: clientId, PORT } = process.env;
 

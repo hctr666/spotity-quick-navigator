@@ -1,4 +1,4 @@
-# Spotify Quick Navigator
+# Spotify Quick Navigator - WIP
 A desktop app to manage basic controls of an active spotify client.
 Using electronjs as the core server and reactjs for the UI.
 

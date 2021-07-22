@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --config ./spec/jest.config.json"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
-    "electron-builder": "^22.10.5"
+    "electron-builder": "^22.10.5",
+    "jest": "^27.0.4"
   }
 }

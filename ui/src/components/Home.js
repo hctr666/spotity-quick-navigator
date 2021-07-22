@@ -45,6 +45,11 @@ function Home() {
       .then(refresh);
   };
 
+  const showLyrics = () => {
+    const { isrc } = currentlyPlaying;
+    service.getTrackLyrics(isrc);
+  };
+
   if (!currentlyPlaying) return 'No current track playing'
 
   return (
@@ -130,6 +135,7 @@ function Home() {
                   >
                     <Icon name="signOutAlt" />
                   </Button>
+                  <button onClick={showLyrics}>Lyrics</button>
                 </Button.Group>
               </div>
             </div>

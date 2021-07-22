@@ -1,0 +1,10 @@
+{
+  "rootDir": "../",
+  "roots": [
+    "<rootDir>/helpers/"
+  ],
+  "testMatch": [
+    "<rootDir>/**/*.spec.js?(x)"
+  ],
+  "setupFilesAfterEnv": ["<rootDir>/spec/setup.js"]
+}

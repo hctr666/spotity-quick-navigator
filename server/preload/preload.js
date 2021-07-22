@@ -1,4 +1,4 @@
 const { contextBridge } = require('electron');
-const apiInvokers = require('./apiInvokers');
+const { api } = require('../processes/rendererProcess');
 
-contextBridge.exposeInMainWorld('api', apiInvokers);
+contextBridge.exposeInMainWorld('api', api);

@@ -2,6 +2,7 @@ const { ipcMain } = require('electron');
 const appService = require('./services/appService');
 const spotifyService = require('./services/spotifyService');
 const authService = require('./services/authService');
+const musixmatchService = require('./services/musixMatchService');
 
 const initPrivate = () => {
   ipcMain.handle('getProfile', spotifyService.getProfile);
@@ -11,6 +12,10 @@ const initPrivate = () => {
   ipcMain.handle('playOrResume', spotifyService.playOrResume);
   ipcMain.handle('pause', spotifyService.pause);
   ipcMain.handle('checkAccessToken', appService.checkAccessToken);
+  ipcMain.handle('getTrackLyrics', async (_, track_isrc) => {
+    const result = await musixmatchService.getTrackSubtitles(track_isrc);
+    return result;
+  });
 }
 
 const initPublic = () => {

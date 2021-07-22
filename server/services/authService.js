@@ -5,12 +5,15 @@ const fetch = require('node-fetch');
 
 const generateCodeChallenge = require('../helpers/generateCodeChallenge');
 const generateRandomString = require('../helpers/generateRandomString');
+const env = require('../helpers/env/env');
+const getConfig = require('../helpers/config/getConfig');
 
-const { CLIENT_ID: clientId, PORT } = process.env;
+const clientId = getConfig('spotify.clientId')
+const port = env('PORT');
 
 const tokenAPIUrl = 'https://accounts.spotify.com/api/token';
 
-const redirectURI = `http://localhost:${PORT}/callback`;
+const redirectURI = `http://localhost:${port}/callback`;
 
 const keytarService = 'spotify-auth-service';
 const keytarAccount = os.userInfo().username;

@@ -21,12 +21,13 @@ const getCurrentlyPlaying = async () => {
       }
     });
 
+    const data = await result.json();
     const {
       is_playing: isPlaying,
-      item: { id, name, album, artists }
-    } = await result.json();
+      item: { id, name, album, artists, external_ids: { isrc } }
+    } = data;
 
-    return { isPlaying, id, name, album, artists };
+    return { isPlaying, id, name, album, artists, isrc };
   } catch(error) {
     return error;
   }

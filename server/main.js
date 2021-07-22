@@ -1,4 +1,5 @@
-require('./initEnv');
+require('dotenv').config();
+
 const { app } = require('electron');
 const { createAuthWindow } = require('./processes/authProcess');
 const { createAppWindow } = require('./processes/appProcess');

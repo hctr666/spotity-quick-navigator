@@ -1,8 +1,9 @@
 const path = require('path');
+const env = require('../helpers/env/env');
 const { app, BrowserWindow } = require('electron');
 const ipcMainHandlers = require('../ipcMainHandlers');
 
-const { PORT } = process.env;
+const PORT = env('PORT');
 const isDev = !app.isPackaged;
 
 let mainWindow = null;
